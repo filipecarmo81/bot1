@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
+import os
 
 app = FastAPI()
 
-# Chave da API da OpenAI (ideal usar variável de ambiente depois)
-openai.api_key = "SUA_CHAVE_OPENAI"
+# Recupera a chave da API da OpenAI da variável de ambiente
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 class Pergunta(BaseModel):
     texto: str
